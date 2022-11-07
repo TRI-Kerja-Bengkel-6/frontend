@@ -66,7 +66,6 @@ signinButton.addEventListener("click", (e) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log(user);
       let lgDate = new Date();
       update(ref(database, "users/" + user.uid), {
         last_login: lgDate,
@@ -74,7 +73,7 @@ signinButton.addEventListener("click", (e) => {
         .then(() => {
           // Data saved successfully!
           alert("user telah sukses login");
-          location.href = "https://kerbengenam.my.id/index.html";
+          // location.href = "https://kerbengenam.my.id/index.html";
         })
         .catch((error) => {
           //the write failed
