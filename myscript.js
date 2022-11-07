@@ -74,7 +74,7 @@ signinButton.addEventListener("click", (e) => {
         .then(() => {
           // Data saved successfully!
           alert("user telah sukses login");
-          // location.href = "https://kerbengenam.my.id/index.html";
+          location.href = "https://kerbengenam.my.id/index.html";
         })
         .catch((error) => {
           //the write failed
