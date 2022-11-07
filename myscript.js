@@ -66,6 +66,7 @@ signinButton.addEventListener("click", (e) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      localStorage.setItem("token", user.stsTokenManager.accessToken);
       let lgDate = new Date();
       update(ref(database, "users/" + user.uid), {
         last_login: lgDate,
