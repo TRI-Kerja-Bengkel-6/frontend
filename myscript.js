@@ -16,7 +16,7 @@ const firebaseConfig = {
   storageBucket: "kerbeng6.appspot.com",
   messagingSenderId: "849017036403",
   appId: "1:849017036403:web:b814709b788b0efcc4d406",
-  measurementId: "G-9N4LS8BW6N"
+  measurementId: "G-9N4LS8BW6N",
 };
 
 // Initialize Firebase
@@ -41,7 +41,7 @@ signupButton.addEventListener("click", (e) => {
         name: name,
         nohp: nohp,
         email: emailSignup,
-        password: passwordSignup
+        password: passwordSignup,
       })
         .then(() => {
           // Data saved successfully!
@@ -66,13 +66,14 @@ signinButton.addEventListener("click", (e) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      console.log(user);
       let lgDate = new Date();
       update(ref(database, "users/" + user.uid), {
-        last_login: lgDate
+        last_login: lgDate,
       })
         .then(() => {
           // Data saved successfully!
-          //alert("user telah sukses login");
+          alert("user telah sukses login");
           location.href = "https://kerbengenam.my.id/index.html";
         })
         .catch((error) => {
@@ -89,4 +90,3 @@ signinButton.addEventListener("click", (e) => {
     .then(() => {})
     .catch((error) => {});
 });
-
