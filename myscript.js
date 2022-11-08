@@ -67,14 +67,16 @@ signinButton.addEventListener("click", (e) => {
       // Signed in
       const user = userCredential.user;
       sessionStorage.setItem("token", user.stsTokenManager.accessToken);
+      sessionStorage.setItem("email", emailSignin);
       let lgDate = new Date();
       update(ref(database, "users/" + user.uid), {
         last_login: lgDate,
       })
         .then(() => {
+          console.log(user);
           // Data saved successfully!
           alert("user telah sukses login");
-          location.href = "https://kerbengenam.my.id/index.html";
+          // location.href = "https://kerbengenam.my.id/index.html";
         })
         .catch((error) => {
           //the write failed

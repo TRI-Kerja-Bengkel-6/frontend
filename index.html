@@ -361,6 +361,7 @@
       e.preventDefault();
       const formData = new FormData(form);
       const Token = sessionStorage.getItem("token");
+      formData.append('email', sessionStorage.getItem("email"));
       axios
         .post("https://10.33.102.210:5000/v1/createStack?", formData, {
           headers: {
@@ -369,11 +370,9 @@
           },
         })
         .then((res) => {
-          console.log(res);
           alert(`selamat aplikasi anda berhasil diinstal. akses melalui ${res.data.app_domain}`)
         })
         .catch((err) => {
-          console.log(err);
           alert("silahkan login terlebih dahulu");
           location.href = "https://kerbengenam.my.id/login.html";
         });
