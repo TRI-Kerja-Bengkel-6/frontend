@@ -71,7 +71,7 @@
         console.log(Token);
         formData.append("email", Email);
         axios
-          .get("https://10.33.102.210:5000/v1/getUserDomain?", formData, {
+          .post("https://10.33.102.210:5000/v1/getUserDomain?", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
               "Authorization": `Bearer ${Token}`
