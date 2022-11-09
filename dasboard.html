@@ -84,7 +84,10 @@
             $("#domain").text(Domain);
             $("a.btn btn-primary").attr("href", Domain);
           })
-          .catch((error) => console.error(error));
+          .catch((error) => {
+            console.error(error)
+            console.log(headers)
+          });
       });
     </script>
   </head>
