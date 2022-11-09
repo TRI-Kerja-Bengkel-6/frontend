@@ -65,7 +65,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <script>
-    window.addEventListener("load", (e) => {
+    window.addEventListener("DOMContentLoaded", (e) => {
       e.preventDefault();
       const formData = new FormData();
       const Email = sessionStorage.getItem("email");
