@@ -76,7 +76,7 @@ signinButton.addEventListener("click", (e) => {
           console.log(user);
           // Data saved successfully!
           alert("user telah sukses login");
-          // location.href = "https://kerbengenam.my.id/index.html";
+          location.href = "http://127.0.0.1:5500/frontend/dasboard.html";
         })
         .catch((error) => {
           //the write failed

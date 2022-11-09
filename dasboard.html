@@ -35,13 +35,13 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h4 class="card-title"><b>Hi, email</b></h4>
+              <h4 id="email" class="card-title"><b>Hi, email</b></h4>
             </div>
             <hr />
             <div class="col-6">
               <p>Domain Name</p>
             </div>
-            <div class="col-6">
+            <div id="domain" class="col-6">
               <p>www.wordpress.com</p>
             </div>
           </div>
@@ -59,18 +59,29 @@
       </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-      const user = userCredential.user("user");
-      form.addEventListener("submit", (e) => {
+      window.addEventListener("load", (e) => {
         e.preventDefault();
-        const formData = new FormData(form);
+        const formData = new FormData();
         const Email = sessionStorage.getItem("email");
         const Token = sessionStorage.getItem("token");
+        formData.append("email", Email);
         axios
-          .get("https://10.33.102.210:5000/v1/getUserDomain?")
+          .get("https://10.33.102.210:5000/v1/getUserDomain?", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${Token}`,
+            },
+          })
           .then((response) => {
-            console.log(response.data);
+            console.log(response);
+            const Domain = response.domain;
+            $("#card-title").text(`Hi, ${Email}`);
+            $("#domain").text(Domain);
+            $("a.btn btn-primary").attr("href", Domain);
           })
           .catch((error) => console.error(error));
       });
