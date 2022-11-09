@@ -33,7 +33,7 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet" />
     
-    <script type="module">
+    <script>
       const formData = new FormData();
       const Email = sessionStorage.getItem("email");
       const Token = sessionStorage.getItem("token");
@@ -48,13 +48,15 @@
         })
         .then((response) => {
           console.log(response);
-          const Domain = response.domain;
+          var Domain = response.domain;
           console.log(Domain)
           $(document).ready(function() {
-            $("h4.email").text(`Hi, ${Email}`);
-            $("p.domain").text(Domain);
+            var parent = $('#email');
+            $("email").text(`Hi, ${Email}`);
+            $("domain").text(Domain);
             $("a.btn btn-primary").attr("href", Domain);
           });
+          console.log($('#email'))
         })
         .catch((error) => {
           console.error(error)
@@ -66,7 +68,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h4 id="email" class="card-title"><b></b></h4>
+              <h4 class="card-title"><b id="email"></b></h4>
             </div>
             <hr />
             <div class="col-6">
