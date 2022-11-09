@@ -33,7 +33,7 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet" />
     
-    <script>
+    <script type="module">
       const formData = new FormData();
       const Email = sessionStorage.getItem("email");
       const Token = sessionStorage.getItem("token");
@@ -51,8 +51,8 @@
           const Domain = response.domain;
           console.log(Domain)
           $(document).ready(function() {
-            $("#card-title").text(`Hi, ${Email}`);
-            $("#domain").text(Domain);
+            $("h4.email").text(`Hi, ${Email}`);
+            $("p.domain").text(Domain);
             $("a.btn btn-primary").attr("href", Domain);
           });
         })
@@ -66,14 +66,14 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h4 id="email" class="card-title">${Email}<b></b></h4>
+              <h4 id="email" class="card-title"><b></b></h4>
             </div>
             <hr />
             <div class="col-6">
               <p>Domain Name</p>
             </div>
-            <div id="domain" class="col-6">
-              <p>${Domain}</p>
+            <div class="col-6">
+              <p id="domain"></p>
             </div>
           </div>
         </div>
