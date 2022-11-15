@@ -63,6 +63,33 @@
         .catch((error) => {
           console.error(error)
         });
+
+      $(document).ready(function () {
+        $('.buyNow').click(function () {
+          $("#myModal").modal("show");
+        })
+        const form = document.querySelector("form");
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const formData = new FormData(form);
+          const Token = sessionStorage.getItem("token");
+          formData.append('email', sessionStorage.getItem("email"));
+          axios
+            .post("http://api.kerbengenam.my.id/v1/createStack?", formData, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                "Authorization": `Bearer ${Token}`
+              },
+            })
+            .then((res) => {
+              alert(`selamat aplikasi anda berhasil diinstal. akses melalui ${res.data.app_domain}`)
+            })
+            .catch((err) => {
+              alert("silahkan login terlebih dahulu");
+              location.href = "http://kerbengenam.my.id/login.html";
+            });
+        });
+      });
     </script>
 
     <div class="container">
@@ -94,4 +121,107 @@
       </div>
     </div>
   </head>
+  <body>
+    <section id="pricing" class="pricing">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Price List</h2>
+          <p>Choose your own Apps!</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="box" data-aos="zoom-in-right" data-aos-delay="200">
+              <h3>Wordpress Hosting</h3>
+              <h4><sup>IDR</sup>27.900<span> / bulan</span></h4>
+              <ul>
+                <li>100 Website</li>
+                <li>1000 GB SSD Storage</li>
+                <li>Email Gratis</li>
+                <li>SSL Gratis Unlimited</li>
+                <li>Managed WordPress</li>
+              </ul>
+              <div class="btn-wrap">
+                <button class="btn-buy buyNow">Buy Now</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+            <div class="box" data-aos="zoom-in" data-aos-delay="100">
+              <h3>Cloud Hosting</h3>
+              <h4><sup>IDR</sup>149.900<span> / bulan</span></h4>
+              <ul>
+                <li>300 Website</li>
+                <li>200 GB SSD Storage</li>
+                <li>Email Gratis</li>
+                <li>SSL Gratis Unlimited</li>
+                <li>Unlimited Database</li>
+              </ul>
+              <div class="btn-wrap">
+                <button class="btn-buy buyNow">Buy Now</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+            <div class="box" data-aos="zoom-in-left" data-aos-delay="200">
+              <h3>Email Hosting</h3>
+              <h4><sup>IDR</sup>37.800<span> / bulan</span></h4>
+              <ul>
+                <li>10 GB Email storage</li>
+                <li>10 Forwarding Rule</li>
+                <li>50 Email Alias</li>
+                <li>Antivirus Check</li>
+                <li>Infrastruktur Berbasis Cloud</li>
+              </ul>
+              <div class="btn-wrap">
+                <button class="btn-buy buyNow">Buy Now</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal HTML -->
+          <div id="myModal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirm Your Orders</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form class="form-group px-5 py-3">
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Username</label>
+                    <input type="username" class="form-control" id="exampleInputUsername1" aria-describedby="emailHelp"
+                      placeholder="Enter Username" name="username">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputApp1">App</label>
+                    <input type="app" class="form-control" id="exampleInputApp1" placeholder="Enter App" name="app">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password"
+                      name="password">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputSubdomain1">Subdomain</label>
+                    <input type="subdomain" class="form-control" id="exampleInputSubdomain1"
+                      placeholder="Enter Subdomain" name="subdomain">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Checkout</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    </section>
+  </body>
 </html>
