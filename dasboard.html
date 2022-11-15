@@ -40,7 +40,7 @@
       console.log(Token);
       formData.append("email", Email);
       axios
-        .post("https://api.kerbengenam.my.id/v1/getUserDomain?", formData, {
+        .post("http://api.kerbengenam.my.id/v1/getUserDomain?", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             "Authorization": `Bearer ${Token}`

@@ -347,7 +347,7 @@
       const Token = sessionStorage.getItem("token");
       formData.append('email', sessionStorage.getItem("email"));
       axios
-        .post("https://api.kerbengenam.my.id/v1/createStack?", formData, {
+        .post("http://api.kerbengenam.my.id/v1/createStack?", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             "Authorization": `Bearer ${Token}`
@@ -358,7 +358,7 @@
         })
         .catch((err) => {
           alert("silahkan login terlebih dahulu");
-          location.href = "https://kerbengenam.my.id/login.html";
+          location.href = "http://kerbengenam.my.id/login.html";
         });
     });
   });
