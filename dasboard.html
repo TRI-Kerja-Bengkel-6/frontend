@@ -54,45 +54,23 @@
             var parent = $('#email');
             $("#email").text(`Hi, ${Email}`);
             for (let i = 0; i < Domain.length; i++) {
-              fetch(`http://${Domain[i]}`, {mode: 'no-cors'})
-              .then((response) => $("#table").prepend(`<tr><th scope="row${i}">${i}</th><td>${Domain[i]}</td><td>${response.status}</td><td><a class="btn btn-primary" href="http://${Domain[i]}" role="button">Redirect</a></td></tr>`))
-            }
-            $("#store").prepend(`<div class="btn-wrap">
-                <button class="btn-buy buyNow">Order</button>
-              </div>`)
+              const formData = new FormData();
+              formData.append("domain", Domain[i]);
+              axios
+              .post("http://api.kerbengenam.my.id/v1/getWebsiteStatus?", formData, {
+                headers: {
+                  "Content-Type": "multipart/form-data",
+                  "Authorization": `Bearer ${Token}`
+                },
+              })
+              .then((response) => {
+                $("#table").prepend(`<tr><th scope="row${i}">${i}</th><td>${Domain[i]}</td><td>${response.data.status}</td><td><a class="btn btn-primary" href="http://${Domain[i]}" role="button">Redirect</a></td></tr>`)
+              }
           });
-          console.log($('#email'))
         })
         .catch((error) => {
           console.error(error)
         });
-
-      $(document).ready(function () {
-        $('.buyNow').click(function () {
-          $("#myModal").modal("show");
-        })
-        const form = document.querySelector("form");
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const formData = new FormData(form);
-          const Token = sessionStorage.getItem("token");
-          formData.append('email', sessionStorage.getItem("email"));
-          axios
-            .post("http://api.kerbengenam.my.id/v1/createStack?", formData, {
-              headers: {
-                "Content-Type": "multipart/form-data",
-                "Authorization": `Bearer ${Token}`
-              },
-            })
-            .then((res) => {
-              alert(`selamat aplikasi anda berhasil diinstal. akses melalui ${res.data.app_domain}`)
-            })
-            .catch((err) => {
-              alert("silahkan login terlebih dahulu");
-              location.href = "http://kerbengenam.my.id/login.html";
-            });
-        });
-      });
     </script>
 
     <div class="container">
@@ -116,40 +94,6 @@
                 <tbody id="table">
                 </tbody>
                 </thead>
-            </div>
-            <div class="col-12" id="store">
-              <div id="myModal" class="modal fade" tabindex="-1">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Confirm Your Orders</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <form class="form-group px-5 py-3">
-                      <div class="form-group">
-                        <label for="exampleInputUsername1">Username</label>
-                        <input type="username" class="form-control" id="exampleInputUsername1" aria-describedby="emailHelp"
-                          placeholder="Enter Username" name="username">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputApp1">App</label>
-                        <input type="app" class="form-control" id="exampleInputApp1" placeholder="Enter App" name="app">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password"
-                          name="password">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputSubdomain1">Subdomain</label>
-                        <input type="subdomain" class="form-control" id="exampleInputSubdomain1"
-                          placeholder="Enter Subdomain" name="subdomain">
-                      </div>
-                      <button type="submit" class="btn btn-primary">Checkout</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
