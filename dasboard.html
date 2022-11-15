@@ -49,13 +49,15 @@
         })
         .then((response) => {
           console.log(response);
-          var Domain = response.domain;
+          var Domain = response.data.domain;
           console.log(Domain)
           $(document).ready(function() {
             var parent = $('#email');
             $("#email").text(`Hi, ${Email}`);
-            $("#domain").text(Domain);
-            $("a.btn btn-primary").attr("href", Domain);
+            for (let i = 0; i < Domain.length; i++) {
+              fetch(Domain[i])
+              .then((response) => $("#table").prepend(`<tr><th scope="row${i}">1</th><td>${Domain[i]}</td><td>${response.status}</td><td><a class="btn btn-primary" href="${Domain[i]}" role="button">Redirect</a></td></tr>`))
+            }
           });
           console.log($('#email'))
         })
@@ -73,21 +75,21 @@
             </div>
             <hr />
             <div class="col-6">
-              <p>Domain Name</p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Domain</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Redirect</th>
+                  </tr>
+                </thead>
+                <tbody id="table">
+                </tbody>
+                </thead>
             </div>
             <div class="col-6">
               <p id="domain"></p>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card-footer bg-white px-0">
-        <div class="row">
-          <div class="col-md-auto">
-            <a> </a>
-            <a href="#" class="btn btn-primary"><small>APP</small></a>
-            <span class="vl ml-3"></span>
           </div>
         </div>
       </div>
