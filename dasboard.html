@@ -55,7 +55,7 @@
             $("#email").text(`Hi, ${Email}`);
             for (let i = 0; i < Domain.length; i++) {
               fetch(Domain[i])
-              .then((response) => $("#table").prepend(`<tr><th scope="row${i}">1</th><td>${Domain[i]}</td><td>${response.status}</td><td><a class="btn btn-primary" href="http://${Domain[i]}" role="button">Redirect</a></td></tr>`))
+              .then((response) => $("#table").prepend(`<tr><th scope="row${i}">${i}</th><td>${Domain[i]}</td><td>${response.status}</td><td><a class="btn btn-primary" href="http://${Domain[i]}" role="button">Redirect</a></td></tr>`))
             }
           });
           console.log($('#email'))
