@@ -8,6 +8,8 @@ services:
     networks:
       - backend
       - traefik-public
+    ports:
+      - "80":"80"
     deploy:
       labels:
         - "traefik.enable=true"
