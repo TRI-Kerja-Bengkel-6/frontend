@@ -8,16 +8,12 @@ services:
     networks:
       - backend
       - traefik-public
-    ports:
-      - "80":"80"
     deploy:
       labels:
         - "traefik.enable=true"
         # change the host here
         - "traefik.http.routers.landingpage.rule=Host(`kerbengenam.my.id`)"
-        - "traefik.http.routers.landingpage.entrypoints=websecure"
-        - "traefik.http.routers.landingpage.tls=true"
-        - "traefik.http.routers.landingpage.tls.certresolver=leresolver"
+        - "traefik.http.routers.landingpage.entrypoints=web"
         - "traefik.http.services.landingpage.loadbalancer.server.port=80"
 
 networks:
