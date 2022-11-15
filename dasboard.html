@@ -54,7 +54,7 @@
             var parent = $('#email');
             $("#email").text(`Hi, ${Email}`);
             for (let i = 0; i < Domain.length; i++) {
-              fetch(`http://${Domain[i]}`)
+              fetch(`http://${Domain[i]}`, {mode: 'no-cors'})
               .then((response) => $("#table").prepend(`<tr><th scope="row${i}">${i}</th><td>${Domain[i]}</td><td>${response.status}</td><td><a class="btn btn-primary" href="http://${Domain[i]}" role="button">Redirect</a></td></tr>`))
             }
             $("#store").prepend(`<div class="btn-wrap">
