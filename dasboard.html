@@ -56,6 +56,15 @@
           $(document).ready(function() {
             var parent = $('#email');
             $("#email").text(`Hi, ${Email}`);
+            var table = $('#table-init').DataTable({
+                columnDefs: [
+                  {
+                      targets: -1,
+                      data: null,
+                      defaultContent: '<button>Redirect!</button>',
+                  },
+                ],
+            });
             for (let i = 0; i < Domain.length; i++) {
               const formData = new FormData();
               formData.append("domain", Domain[i]);
@@ -66,17 +75,23 @@
                 },
               })
               .then((response) => {
-                $("#table").prepend(`<tr><th scope="row${i}">${i}</th><td>${Domain[i]}</td><td>${response.data.status}</td><td><a class="btn btn-primary" href="http://${Domain[i]}" role="button">Redirect</a></td></tr>`);
+                table.row.add({
+                  "No": `${i}`,
+                  "Domain": `${Domain[i]}`,
+                  "Status": `${response.data.status}`
+                })
+                ///$("#table").prepend(`<tr><th scope="row${i}">${i}</th><td>${Domain[i]}</td><td>${response.data.status}</td><td><a class="btn btn-primary" href="http://${Domain[i]}" role="button">Redirect</a></td></tr>`);
               })
+            $('#table-init tbody').on('click', 'button', function () {
+              var data = table.row($(this).parents('tr')).data();
+              window.location.assign(`http://${Domain[i]}`);
+            });
           };
         })
       })
       .catch((error) => {
           console.error(error)
       });
-      $(document).ready(function() {
-        $('#table-init').DataTable();
-      })
     </script>
 
     <div class="container">
