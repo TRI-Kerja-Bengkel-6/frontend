@@ -68,13 +68,15 @@
               .then((response) => {
                 $("#table").prepend(`<tr><th scope="row${i}">${i}</th><td>${Domain[i]}</td><td>${response.data.status}</td><td><a class="btn btn-primary" href="http://${Domain[i]}" role="button">Redirect</a></td></tr>`);
               })
-            $('#table-init').DataTable();
           };
         })
       })
       .catch((error) => {
           console.error(error)
       });
+      $(document).ready(function() {
+        $('#table-init').DataTable();
+      })
     </script>
 
     <div class="container">
