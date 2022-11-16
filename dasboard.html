@@ -84,7 +84,7 @@
               })
             $('#table-init tbody').on('click', 'button', function () {
               var data = table.row($(this).parents('tr')).data();
-              window.location.assign(`http://${Domain[i]}`);
+              window.location.assign(`http://${data[1]}`);
             });
           };
         })
