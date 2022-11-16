@@ -75,11 +75,11 @@
                 },
               })
               .then((response) => {
-                table.row.add({
-                  "No": `${i}`,
-                  "Domain": `${Domain[i]}`,
-                  "Status": `${response.data.status}`
-                }).draw();
+                table.row.add([
+                  `${i}`,
+                  `${Domain[i]}`,
+                  `${response.data.status}`
+              ]).draw();
                 ///$("#table").prepend(`<tr><th scope="row${i}">${i}</th><td>${Domain[i]}</td><td>${response.data.status}</td><td><a class="btn btn-primary" href="http://${Domain[i]}" role="button">Redirect</a></td></tr>`);
               })
             $('#table-init tbody').on('click', 'button', function () {
