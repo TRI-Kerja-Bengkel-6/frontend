@@ -31,7 +31,14 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
@@ -39,7 +46,6 @@
 </head>
 
 <body>
-
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
@@ -49,7 +55,7 @@
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
-      <nav id="navbar" class="navbar">
+      <nav id="navbar" class="navbar pr-3 py-1">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Order</a></li>
@@ -127,7 +133,15 @@
         <div class="section-title" data-aos="fade-up">
           <h2>About Us</h2>
         </div>
-
+        <div class="row content">
+          <video src="assets/video/Kerja Benkel Video.mp4" type="video/mp4" loop class="hover-to-play w-100 pb-5">
+          </video>
+          <script>
+            const clip = document.querySelectorAll(".hover-to-play");
+            for (let i = 0; i < clip.length; i++) { clip[i].addEventListener("mouseenter", function (e) { clip[i].play();
+              }); clip[i].addEventListener("mouseout", function (e) { clip[i].pause(); }); }
+          </script>
+        </div>
         <div class="row content">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
             <p>
@@ -148,7 +162,6 @@
             <a href="#" class="btn-learn-more">Learn More</a>
           </div>
         </div>
-
       </div>
     </section><!-- End About Us Section -->
 
